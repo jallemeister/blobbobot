@@ -79,6 +79,8 @@ async function bild(allianceId) {
    const imgname = allianceId + '.png';
    await page.goto('https://cryptic-earth-19665.herokuapp.com/#/alliances/' + allianceId + '/showscorenolink/1');
 
+   await new Promise(r => setTimeout(r, 3000));
+
    await page.setViewport({width: 980, height: 713});
    await page.screenshot({path: imgname});
 
