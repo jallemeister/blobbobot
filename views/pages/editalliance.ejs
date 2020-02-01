@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="container">
+
+<main>
+    <div>
+        <h1>Edit Alliance</h1>
+        <form action="/alliances/<%= alliance._id %>/edit" method="post">			
+			<label for="allianceName">alliance name</label>
+			<input type="text" name="allianceName" value="<%= alliance.name %>"/><br/>
+			<label for="alliance">alliance</label>
+			<label for="channelId">channelId</label>
+			<input type="text" name="channelId" value="<%= alliance.channelId %>"/><br/>
+			<label for="minimum">minimum</label>
+			<input type="text" name="minimum" value="<%= alliance.minimum %>"/><br/>
+			<label for="minimumClose">minimumClose</label>
+			<input type="text" name="minimumClose" value="<%= alliance.minimumClose %>"/><br/>
+			<input type="submit" value="Save"/> | <a href="/">back</a>
+		</form>
+    </div>
+</main>
+
+
+</body>
+</html>

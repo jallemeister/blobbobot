@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="container">
+
+<main>
+    <div>
+        <h1>Edit Member</h1>
+        <form action="/members/<%= member._id %>/edit" method="post">
+			<label for="memberName">memberName</label>
+			<input type="text" name="memberName" value="<%= member.name %>"/><br/>
+			<label for="alliance">alliance</label>
+			<select class="selectpicker" data-style="btn-info" name="alliance" value="5bc3157fea63d826dcaaa3f1">
+				<optgroup label="Alliance" >
+					<% alliances.forEach(function(r) { %>
+						<option name="" value="<%= r._id %>" 
+						<% if (r._id == member.alliance) { %>
+							selected="selected">
+						<%} else {%>
+							>
+						<% } %>
+						<%= r.name %></option>
+					<% }); %>
+				</optgroup>
+			</select>
+			<br/>
+			<label for="discordId">discordId</label>
+			<input type="text" name="discordId" value="<%= member.discordId %>"/><br/>
+			<label for="namecolor">namecolor</label>
+			<input type="text" name="namecolor" value="<%= member.namecolor %>"/><br/>
+			<label for="bgcolor">bgcolor</label>
+			<input type="text" name="bgcolor" value="<%= member.bgcolor %>"/><br/>
+			<input type="submit" value="Save"/> | <a href="/members">back</a>
+		</form>
+    </div>
+</main>
+
+
+</body>
+</html>

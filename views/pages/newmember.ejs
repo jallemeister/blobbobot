@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="container">
+
+<main>
+    <div>
+        <h1>New Member</h1>
+        <form action="/members/new" method="post">
+			<label for="memberName">member name:</label>
+			<input type="text" name="memberName"/><br/>
+			<label for="alliance">alliance: </label>
+			<select class="selectpicker" data-style="btn-info" name="alliance">
+				<optgroup label="Alliance">
+					<% result.forEach(function(r) { %>
+						<option name="" value="<%= r._id %>"><%= r.name %></option>
+					<% }); %>
+				</optgroup>
+			</select>
+
+			<br/>
+			<label for="discordId">discordId:</label>
+			<input type="text" name="discordId"/><br/>
+			<input type="submit" value="create"/>
+		</form>
+    </div>
+</main>
+
+
+</body>
+</html>

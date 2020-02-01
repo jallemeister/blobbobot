@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="container">
+
+<main>
+    <div>
+        <h1>Edit Score</h1>
+        <form action="/scores/<%= allianceId %>/edit" method="post">
+			<h1><%= year %>-<%= day %>-<%= month %></h1>
+			<input type="hidden" name="dateDay" value="<%= day %>"/><input type="hidden" name="dateMonth" value="<%= month %>"/><input type="hidden" name="dateYear" value="<%= year %>"/><br/>
+			<table>
+			<th>Name</th>
+			<th>Score</th>
+			<th>Totals</th>
+			<th>Todays current score</th>
+			<% members.forEach(function(r, index) { %>
+			<tr>
+				<td><input type="hidden" name="inmember[<%= index %>][scoreId]" <% if (oldScore[r._id]) { %>value="<%= oldScore[r._id].scoreId %>" <% } %>/><input type="hidden" name="inmember[<%= index %>][_id]" value="<%= r._id %>"/><%= r.name %></td>
+				<td><input type="text" name="inmember[<%= index %>][score]" <% if (oldScore[r._id]) { %>value="<%= oldScore[r._id].score %>"<% } %>/></td>
+				<td><input type="text" name="inmember[<%= index %>][total]" <% if (oldScore[r._id]) { %>value="<%= oldScore[r._id].total %>"<% } %>/></td>
+				<td><input type="text" name="inmember[<%= index %>][currentScore]"/></td>
+			</tr>
+			<% }); %>
+			</table>
+			<br/>
+			<input type="submit" value="add"/> | <a href="/">Oops! I shouldnt be here</a>
+		</form>
+		<p>
+		Score: members score at reset<br/>
+		Totals: members totals, if not captured at reset also enter curent score for a more accurate value<br/>
+		Todays current score: the score member has done after reset. Will be subtracted from totals if not at reset.<br/>
+		</p>
+    </div>
+</main>
+
+
+</body>
+</html>

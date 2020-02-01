@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="container">
+<style>
+table {
+     border-collapse: collapse;
+	 width:66%;
+	 allign: center
+}
+
+ table, th, td {
+     border: 1px solid black;
+} 
+
+tbody .green {
+	background-color: lightgreen
+}
+tbody .yellow {
+	background-color: yellow
+}
+tbody .pink {
+	background-color: pink
+}
+</style>
+
+<main>
+    <div>
+        <!--h1>Scores</-->
+		
+        <table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<% scoreDates.forEach(function(sd, index) { %>
+						<th style="white-space: nowrap"> <%= sd %>&nbsp;&nbsp;&nbsp;  </th>
+					<% }); %>
+					<th>Total&nbsp;&nbsp;&nbsp;  </th>
+					<th>Name</th>
+				</tr>
+
+			</thead>
+			<tbody>
+				<% memberScoreInfo.forEach(function(s) { %>
+				
+					<tr>
+						<td style="background-color:<%= s.bgcolor %>; color:<%= s.namecolor %>"><%= s.name %></td>
+						<% for(var i=0; i < 7; i++) { %>
+							<% if(s.scores[i].score < 0) { %>
+								<td/>
+							<% } else { %>
+								<td <% if (s.scores[i].topscore) { %>class="" <% } %>><%= s.scores[i].score %></td>
+						<% }}; %>
+						
+						<td class="<% if (s.total >= minimum) { %>green<% } else if (s.total < minimumClose ) { %>pink<% } else { %>yellow<% }; %>"><%= s.total %></td>
+						<td style="background-color:<%= s.bgcolor %>; color:<%= s.namecolor %>"><%= s.name %></td>
+					</tr>
+				<% }); %>
+
+			</tbody>
+		</table>
+		<br/>
+		<a href="/alliances/<%= allianceId%>/showscore/<%= dateIndex - 7 %>">Previous week</a> | <a href="/">back</a>
+    </div>
+</main>
+
+
+</body>
+</html>

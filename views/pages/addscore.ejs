@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="container">
+
+<main>
+    <div>
+        <h1>Add Score</h1>
+        <form action="/scores/<%= allianceId %>/new" method="post">
+			<label for="dateDay">Day</label><label for="dateMonth">Month</label><label for="dateYear">Year</label>
+			<input type="text" name="dateDay" value="<%= day %>"/><input type="text" name="dateMonth" value="<%= month %>"/><input type="text" name="dateYear" value="<%= year %>"/><br/>
+			<table>
+			<th>Name</th>
+			<th>Score</th>
+			<% members.forEach(function(r, index) { %>
+			<tr>
+				<td><%= r.name %></td>
+				<td><input type="hidden" name="inmember[<%= index %>][_id]" value="<%= r._id %>"/><input type="text" name="inmember[<%= index %>][score]"/></td>
+			</tr>
+			<% }); %>
+			</table>
+			<br/>
+			<input type="submit" value="add"/>
+		</form>
+    </div>
+</main>
+
+
+</body>
+</html>

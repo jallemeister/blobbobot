@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="container">
+
+<main>
+    <div>
+        <h1>Alliances</h1>
+        <table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th colspan="3"></th>
+				</tr>
+
+			</thead>
+			<tbody>
+				<% result.forEach(function(r) { %>
+					<tr>
+						<td><%= r.name %></td>
+						<td><a href="/alliances/<%= r._id %>/edit">Edit</a></td>
+						<td><a href="/alliances/<%= r._id %>/showscore/0">Show Scores</a></td>
+						<td><a href="/scores/<%= r._id %>/editdate">Enter Scores</a></td>
+					</tr>
+				<% }); %>
+
+			</tbody>
+		</table>
+		<a href="/alliances/new">add alliance</a> | <a href="/members">list members</a> | <a href="/">back</a>
+    </div>
+</main>
+
+
+</body>
+</html>

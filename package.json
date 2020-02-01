@@ -1,0 +1,36 @@
+{
+  "name": "blobbobot",
+  "version": "0.1.1",
+  "description": "Scores and stuff for UjlaCoa",
+  "engines": {
+    "node": "8.9.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "cool-ascii-faces": "^1.3.4",
+    "discord": "^0.8.2",
+    "discord.js": "^11.4.2",
+    "mongoose": "^5.3.3",
+    "puppeteer": "^1.9.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "request": "^2.81.0",
+    "tape": "^4.7.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heroku/node-js-getting-started"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}

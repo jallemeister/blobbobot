@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="container">
+
+<main>
+    <div>
+        <h1>Edit Score</h1>
+        
+		<form action="/scores/<%= allianceId %>/edit" method="post">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<% scoreDates.forEach(function(sd, index) { %>
+						<th style="white-space: nowrap"> <%= sd %>&nbsp;&nbsp;&nbsp;  </th>
+					<% }); %>
+					<th>Total&nbsp;&nbsp;&nbsp;  </th>
+					<th>Name</th>
+				</tr>
+
+			</thead>
+			<tbody>
+				<% memberScoreInfo.forEach(function(s, index) { %>
+				
+					<tr>
+						<td><input type="hidden" name="inmember[<%= index %>][_id]" value="<%= s.memberId %>"/><%= s.name %></td>
+						<% for(var i=0; i < 7; i++) { %>
+						<input type="hidden" name="inmember[<%= index %>][<%= i %>][scoreId]" <% if (s.scores[i]._id) { %>value="<%= s.scores[i]._id.scoreId %>" <% } %>/>
+								<td><input type="text" size="7" name="inmember[<%= index %>][<%= i %>][score]" <% if (s.scores[i].score > -1) { %>value="<%= s.scores[i].score %>" <% } %>/></td>
+						
+						
+						<% }; %>
+						<td class="<% if (s.total >= 1200) { %>green<% } else if (s.total < 1000) { %>pink<% } else { %>yellow<% }; %>"><%= s.total %></td>
+						<td style="background-color:<%= s.bgcolor %>; color:<%= s.namecolor %>"><%= s.name %></td>
+					</tr>					
+				<% }); %>
+
+			</tbody>
+		</table>
+		<br/>
+			<input type="submit" value="add"/>
+			</form>
+    </div>
+</main>
+
+
+</body>
+</html>

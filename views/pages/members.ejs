@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="container">
+<style>
+table {
+     border-collapse: collapse;
+	 width:66%;
+	 allign: center
+}
+</style>
+
+<main>
+    <div>
+        <h1>Members</h1>
+        <table class="table">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Alliance</th>
+					<th>DiscordId</th>
+					<th colspan="2"></th>
+				</tr>
+
+			</thead>
+			<tbody>
+				<% result.forEach(function(r) { %>
+					<tr>
+						<td><%= r.name %></td>
+						<td><%= r.allianceName %></td>
+						<td><%= r.discordId %></td>
+						<td><a href="/members/<%= r._id %>/edit">Edit</a></td>
+						<td><a href="/members/<%= r._id %>/remove">Remove</a></td>
+						<td><a href="/scores/<%= r._id %>/editmemberdate">edit scores</a></td>						
+					</tr>
+				<% }); %>
+
+			</tbody>
+		</table>
+		<a href="/members/new">add member</a> | <a href="/">back</a>
+    </div>
+</main>
+
+
+</body>
+</html>

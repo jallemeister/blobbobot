@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<body class="container">
+
+<main>
+    <div>
+        <h1>Edit Score - Date</h1>
+        <form action="/scores/<%= memberId %>/editmemberdate" method="post">
+			<label for="dateDay">Day</label><label for="dateMonth">Month</label><label for="dateYear">Year</label>
+			<input type="text" name="dateDay" value="<%= day %>"/><input type="text" name="dateMonth" value="<%= month %>"/><input type="text" name="dateYear" value="<%= year %>"/><br/>
+			<br/>
+			<label for="alliance">alliance</label>
+			<select class="selectpicker" data-style="btn-info" name="alliance" value="5bc3157fea63d826dcaaa3f1">
+				<optgroup label="Alliance" >
+					<% allAlliances.forEach(function(r) { %>
+						<option name="" value="<%= r._id %>" >						
+						<%= r.name %></option>
+					<% }); %>
+				</optgroup>
+			</select>
+			</br>
+			<input type="submit" id="scoreEnter" value="choose"/>
+		</form>
+    </div>
+</main>
+
+</body>
+</html>

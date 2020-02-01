@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<body class="container">
+
+<main>
+    <div>
+        <h1>Edit Score - <%= memberName %></h1>
+		<h2>start date of week <%= day %>/<%= month %>-<%= year %></h2>		
+        <form action="/scores/<%= memberId %>/editmemberweek" method="post">
+			<input type="hidden" name="startDay" value="<%= day %>"/>
+			<input type="hidden" name="startMonth" value="<%= month %>"/>
+			<input type="hidden" name="startYear" value="<%= year %>"/>
+			<input type="hidden" name="allianceId" value="<%= allianceId %>"/>
+			<label for="total">Total at start</label>
+			<input type="text" name="total"/>
+			</br>
+			<label for="scoreweek">Scores</label>
+			<input type="text" name="scoreweek" size="200"/>
+			<br/>
+			</br>
+			<input type="submit" id="scoreEnter" value="choose"/>
+		</form>
+    </div>
+</main>
+
+</body>
+</html>
