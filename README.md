@@ -1,0 +1,2 @@
+# blobbobot
+blobbobot for discord
