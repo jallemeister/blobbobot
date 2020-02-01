@@ -81,7 +81,7 @@ async function bild(allianceId) {
 
    await new Promise(r => setTimeout(r, 3000));
 
-   await page.setViewport({width: 980, height: 780});
+   await page.setViewport({width: 980, height: 810});
    await page.screenshot({path: imgname});
 
    await browser.close();
