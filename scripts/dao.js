@@ -547,14 +547,14 @@ function dao() {
     var lePollsRes;
     await pollAnswers.countDocuments({
       pollId: pollId,
-      answer: option
+      option: answer
     }).exec().then(function(lePolls) {
       console.log(lePolls);
       lePollsRes = lePolls;
     });
     return lePollsRes;
   }
-  }
+
 
   this.getMemberTotalsFromDate = async (memberId, resetStart) => {
 
