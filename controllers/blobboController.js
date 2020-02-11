@@ -413,25 +413,34 @@ exports.polls = async (options, message) => {
       
       message.channel.send(createStr);   
       return; 
-    }
+    } else if (options[0] === 'result') {
+      let possibleAnswers = await dao.activePollOptions(activePolls[0]._id);
+      var resultMsg = '';
+      await asyncForMembers(possibleAnswers, async(answ, index) => {
+        let nrAnsw = dao.countPollAnswer(activePolls[0]._id, answ.option);
+        resultMsg = resultMsg + answ.option + ": " + nrAnsw[0];
+      }); 
+      message.channel.send(resultMsg);  
+    } else {
 
-    // answer
-    console.log("Handle pollanswer " + options[0]);
-    if (activePolls && activePolls.length > 0) {
-      console.log("Poll: " + activePolls[0]);
+      // answer
+      console.log("Handle pollanswer " + options[0]);
+      if (activePolls && activePolls.length > 0) {
+        console.log("Poll: " + activePolls[0]);
 
-      memberRes = await dao.findMemberByDiscordIdRet(message.author.id);
+        memberRes = await dao.findMemberByDiscordIdRet(message.author.id);
 
-      let currentAnswer = await dao.findPollAnswer(memberRes[0]._id, activePolls[0]._id);
-      console.log("Found " + currentAnswer[0]);
-      let answer = options[0];
+        let currentAnswer = await dao.findPollAnswer(memberRes[0]._id, activePolls[0]._id);
+        console.log("Found " + currentAnswer[0]);
+        let answer = options[0];
 
-      if (currentAnswer && currentAnswer.length > 0) {
-        console.log("Update current");
-        dao.updatePollAnswer(currentAnswer[0]._id, answer);
-      } else {
-        console.log("create answ: " + answer + " " +memberRes[0]._id );
-        dao.createPollAnswer(activePolls[0]._id, memberRes[0]._id, answer);
+        if (currentAnswer && currentAnswer.length > 0) {
+          console.log("Update current");
+          dao.updatePollAnswer(currentAnswer[0]._id, answer);
+        } else {
+          console.log("create answ: " + answer + " " +memberRes[0]._id );
+          dao.createPollAnswer(activePolls[0]._id, memberRes[0]._id, answer);
+        }
       }
     }
   } else {
