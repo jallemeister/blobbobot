@@ -428,7 +428,7 @@ exports.polls = async (options, message) => {
 
       if (currentAnswer && currentAnswer.length > 0) {
         console.log("Update current");
-        dao.updatePollAnswer(currentAnswer._id, answer);
+        dao.updatePollAnswer(currentAnswer[0]._id, answer);
       } else {
         console.log("create answ: " + answer + " " +memberRes[0]._id );
         dao.createPollAnswer(activePolls[0]._id, memberRes[0]._id, answer);

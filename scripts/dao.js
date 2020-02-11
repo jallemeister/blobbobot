@@ -506,7 +506,7 @@ function dao() {
 
   this.updatePollAnswer = function(id, option) {
     var query = { _id: id};
-		pollAnswers.update(query, { option: option}).exec();    
+		pollAnswers.updateOne(query, { option: option}).exec();    
   }
 
   this.activePolls = async (channelId) => {
@@ -541,6 +541,19 @@ function dao() {
       lePollsRes = lePolls;
     });
     return lePollsRes;
+  }
+
+  this.countPollAnswer = async (pollId, answer) => {
+    var lePollsRes;
+    await pollAnswers.countDocuments({
+      pollId: pollId,
+      answer: option
+    }).exec().then(function(lePolls) {
+      console.log(lePolls);
+      lePollsRes = lePolls;
+    });
+    return lePollsRes;
+  }
   }
 
   this.getMemberTotalsFromDate = async (memberId, resetStart) => {
