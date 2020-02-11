@@ -449,8 +449,10 @@ exports.polls = async (options, message) => {
     // Inform
     let possibleAnswers = await dao.activePollOptions(activePolls[0]._id);
     let createStr = activePolls[0].description + "\n";
+    let exampleOption;
     for (var i = 0; i < possibleAnswers.length; i++) {
       createStr = createStr + "\n  " + possibleAnswers[i].option + ": " + possibleAnswers[i].description;
+      exampleOption = possibleAnswers[i].option;
     }
     createStr = createStr + "\nAnswer with !blobbos poll <option> ( ex. !blobbos poll " + exampleOption + "\n";
     createStr = createStr + "\nPoll ends at:" + "\n" + activePolls[0].endDate;
