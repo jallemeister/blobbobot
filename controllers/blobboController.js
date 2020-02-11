@@ -407,7 +407,7 @@ exports.polls = async (options, message) => {
         }
       }
 
-      createStr = createStr + "\nAnswer with !blobbos poll answ <option> ( ex. !blobbos poll answ " + exampleOption + "\n";
+      createStr = createStr + "\nAnswer with !blobbos poll <option> ( ex. !blobbos poll " + exampleOption + "\n";
 
       createStr = createStr + "\nPoll ends at:" + "\n" + newPoll.endDate;
       
@@ -441,6 +441,7 @@ exports.polls = async (options, message) => {
     for (var i = 0; i < possibleAnswers.length; i++) {
       createStr = createStr + "\n  " + possibleAnswers[i].option + ": " + possibleAnswers[i].description;
     }
+    createStr = createStr + "\nAnswer with !blobbos poll <option> ( ex. !blobbos poll " + exampleOption + "\n";
     createStr = createStr + "\nPoll ends at:" + "\n" + activePolls[0].endDate;
     message.channel.send(createStr);
   }
