@@ -380,8 +380,10 @@ exports.test = async (options, message) => {
 
 exports.polls = async (options, message) => {
   var activePolls = await dao.activePolls(message.channel.id);
+  console.log(options);
+  console.log(options.length);
   console.log(activePolls);
-  if (options.lenght > 0) {
+  if (options.length > 0) {
     // create
     console.log("OPTION IS " + options[0]);
     if (options[0] === 'create') {
