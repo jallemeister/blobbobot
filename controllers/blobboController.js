@@ -412,26 +412,22 @@ exports.polls = async (options, message) => {
     }
 
     // answer
-    if (options[0] === 'answ' || options[0] === 'answer') {
-      console.log("Handle pollanswer " + options[1]);
-      if (activePolls && activePolls.length > 0) {
-        console.log("Poll: " + activePolls[0]);
-        // remove switch
-        let datas = options.slice(1);
+    console.log("Handle pollanswer " + options[0]);
+    if (activePolls && activePolls.length > 0) {
+      console.log("Poll: " + activePolls[0]);
 
-        memberRes = await dao.findMemberByDiscordIdRet(message.author.id);
+      memberRes = await dao.findMemberByDiscordIdRet(message.author.id);
 
-        let currentAnswer = await dao.findPollAnswer(memberRes[0]._id, activePolls[0]._id);
-        console.log("Found " + currentAnswer);
-        let answer = datas[0];
+      let currentAnswer = await dao.findPollAnswer(memberRes[0]._id, activePolls[0]._id);
+      console.log("Found " + currentAnswer);
+      let answer = options[0];
 
-        if (currentAnswer && currentAnswer.length > 0) {
-          console.log("Update current");
-          dao.updatePollAnswer(currentAnswer._id, answer);
-        } else {
-          console.log("create answ: " + answer + " " +memberRes[0]._id );
-          dao.createPollAnswer(activePolls[0]._id, memberRes[0]._id, answer);
-        }
+      if (currentAnswer && currentAnswer.length > 0) {
+        console.log("Update current");
+        dao.updatePollAnswer(currentAnswer._id, answer);
+      } else {
+        console.log("create answ: " + answer + " " +memberRes[0]._id );
+        dao.createPollAnswer(activePolls[0]._id, memberRes[0]._id, answer);
       }
     }
   } else {
