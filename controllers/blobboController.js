@@ -383,6 +383,7 @@ exports.polls = async (options, message) => {
   console.log(activePolls);
   if (options.lenght > 0) {
     // create
+    console.log("OPTION IS " + options[0]);
     if (options[0] === 'create') {
       // vreate
       let datas = options.slice(1);
@@ -408,7 +409,8 @@ exports.polls = async (options, message) => {
 
       createStr = createStr + "\nPoll ends at:" + "\n" + newPoll.endDate;
       
-      message.channel.send(createStr);    
+      message.channel.send(createStr);   
+      return; 
     }
 
     // answer
