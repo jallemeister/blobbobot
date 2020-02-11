@@ -531,11 +531,16 @@ function dao() {
     return lePollsRes;
   }
   
-  this.findPollAnswer = function(memberId, pollId) {
-    return pollAnswers.find({
+  this.findPollAnswer = async (memberId, pollId) => {
+    var lePollsRes;
+    await pollAnswers.find({
       pollId: pollId,
-      member: mongoose.Types.ObjectId(memberId)
-    }).exec();
+      memberId: memberId
+    }).exec().then(function(lePolls) {
+      console.log(lePolls);
+      lePollsRes = lePolls;
+    });
+    return lePollsRes;
   }
 
   this.getMemberTotalsFromDate = async (memberId, resetStart) => {

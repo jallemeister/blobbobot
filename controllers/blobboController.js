@@ -423,7 +423,7 @@ exports.polls = async (options, message) => {
       memberRes = await dao.findMemberByDiscordIdRet(message.author.id);
 
       let currentAnswer = await dao.findPollAnswer(memberRes[0]._id, activePolls[0]._id);
-      console.log("Found " + currentAnswer);
+      console.log("Found " + currentAnswer[0]);
       let answer = options[0];
 
       if (currentAnswer && currentAnswer.length > 0) {
