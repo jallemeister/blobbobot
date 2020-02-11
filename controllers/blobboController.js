@@ -418,8 +418,8 @@ exports.polls = async (options, message) => {
       var resultMsg = '';
       await asyncForMembers(possibleAnswers, async(answ, index) => {
         console.log('Finding ' + answ.option + ' IN ' + activePolls[0]._id);
-        let nrAnsw = dao.countPollAnswer(activePolls[0]._id, answ.option);
-        console.log('NRANSW: ' + nrAnsw);
+        let nrAnsw = await dao.countPollAnswer(activePolls[0]._id, answ.option);
+        console.log('NRANSW' + nrAnsw);
         resultMsg = resultMsg + answ.option + ": " + nrAnsw[0] + "\n";
       }); 
       message.channel.send(resultMsg);  
