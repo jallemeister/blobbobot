@@ -381,57 +381,68 @@ exports.test = async (options, message) => {
 exports.polls = async (options, message) => {
   var activePolls = await dao.activePolls(message.channel.id);
   console.log(activePolls);
-  // create
-  if (options[0] === 'create') {
-    // vreate
-    let datas = options.slice(1);
-    let descript = datas[0];
-    let leOpts = datas.slice(1);
-    let startDate = new Date();
-    let endDate = new Date();
-    endDate.setDate(endDate.getDate() + leOpts[leOpts.length - 1]);
-    let newPoll = await dao.createPoll(message.channel.id, descript, startDate, endDate, "");
-    let createStr = descript + "\n";
-    let exampleOption = "";
-    for (var i=0; i < leOpts.length-2; i++){
-      if (leOpts[i+1] === ':') {
-        exampleOption = leOpts[i];
-        console.log(leOpts[i] + " = " + leOpts[i+2]);
-        dao.createPollOption(newPoll._id, leOpts[i], leOpts[i+2]);
-        createStr = createStr + "\n  " + leOpts[i] + ": " + leOpts[i+2];
-        i++;        
-      }
-    }
-
-    createStr = createStr + "\nAnswer with !blobbos poll answ <option> ( ex. !blobbos poll answ " + exampleOption + "\n";
-
-    createStr = createStr + "\nPoll ends at:" + "\n" + newPoll.endDate;
-    
-    message.channel.send(createStr);    
-  }
-
-  // answer
-  if (options[0] === 'answ' || options[0] === 'answer') {
-    console.log("Handle pollanswer " + options[1]);
-    if (activePolls && activePolls.length > 0) {
-      console.log("Poll: " + activePolls[0]);
-      // remove switch
+  if (options.lenght > 0) {
+    // create
+    if (options[0] === 'create') {
+      // vreate
       let datas = options.slice(1);
+      let descript = datas[0];
+      let leOpts = datas.slice(1);
+      let startDate = new Date();
+      let endDate = new Date();
+      endDate.setDate(endDate.getDate() + leOpts[leOpts.length - 1]);
+      let newPoll = await dao.createPoll(message.channel.id, descript, startDate, endDate, "");
+      let createStr = descript + "\n";
+      let exampleOption = "";
+      for (var i=0; i < leOpts.length-2; i++){
+        if (leOpts[i+1] === ':') {
+          exampleOption = leOpts[i];
+          console.log(leOpts[i] + " = " + leOpts[i+2]);
+          dao.createPollOption(newPoll._id, leOpts[i], leOpts[i+2]);
+          createStr = createStr + "\n  " + leOpts[i] + ": " + leOpts[i+2];
+          i++;        
+        }
+      }
 
-      memberRes = await dao.findMemberByDiscordIdRet(message.author.id);
+      createStr = createStr + "\nAnswer with !blobbos poll answ <option> ( ex. !blobbos poll answ " + exampleOption + "\n";
 
-      let currentAnswer = await dao.findPollAnswer(memberRes[0]._id, activePolls[0]._id);
-      console.log("Found " + currentAnswer);
-      let answer = datas[0];
+      createStr = createStr + "\nPoll ends at:" + "\n" + newPoll.endDate;
+      
+      message.channel.send(createStr);    
+    }
 
-      if (currentAnswer && currentAnswer.length > 0) {
-        console.log("Update current");
-        dao.updatePollAnswer(currentAnswer._id, answer);
-      } else {
-        console.log("create answ: " + answer + " " +memberRes[0]._id );
-        dao.createPollAnswer(activePolls[0]._id, memberRes[0]._id, answer);
+    // answer
+    if (options[0] === 'answ' || options[0] === 'answer') {
+      console.log("Handle pollanswer " + options[1]);
+      if (activePolls && activePolls.length > 0) {
+        console.log("Poll: " + activePolls[0]);
+        // remove switch
+        let datas = options.slice(1);
+
+        memberRes = await dao.findMemberByDiscordIdRet(message.author.id);
+
+        let currentAnswer = await dao.findPollAnswer(memberRes[0]._id, activePolls[0]._id);
+        console.log("Found " + currentAnswer);
+        let answer = datas[0];
+
+        if (currentAnswer && currentAnswer.length > 0) {
+          console.log("Update current");
+          dao.updatePollAnswer(currentAnswer._id, answer);
+        } else {
+          console.log("create answ: " + answer + " " +memberRes[0]._id );
+          dao.createPollAnswer(activePolls[0]._id, memberRes[0]._id, answer);
+        }
       }
     }
+  } else {
+    // Inform
+    let possibleAnswers = await dao.activePollOptions(activePolls[0]._id);
+    let createStr = activePolls[0].description + "\n";
+    for (var i = 0; i < possibleAnswers.length; i++) {
+      createStr = createStr + "\n  " + possibleAnswers[i].option + ": " + possibleAnswers[i].description;
+    }
+    createStr = createStr + "\nPoll ends at:" + "\n" + activePolls[0].endDate;
+    message.channel.send(createStr);
   }
   
 }

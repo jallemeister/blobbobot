@@ -519,6 +519,17 @@ function dao() {
     });
     return lePollsRes;
   }
+
+  this.activePollOptions = async (pollId) => {
+    var lePollsRes;
+    await pollOptions.find({
+      pollId: pollId
+    }).exec().then(function(lePolls) {
+      console.log(lePolls);
+      lePollsRes = lePolls;
+    });
+    return lePollsRes;
+  }
   
   this.findPollAnswer = function(memberId, pollId) {
     return pollAnswers.find({
