@@ -393,7 +393,7 @@ exports.polls = async (options, message) => {
       let leOpts = datas.slice(1);
       let startDate = new Date();
       let endDate = new Date();
-      console.log("TIME " + leOpts[leOpts.length - 1]);
+      console.log("TIME " + leOpts[leOpts.length - 1] + endDate);
       endDate.setDate(endDate.getDate() + leOpts[leOpts.length - 1]);
       let newPoll = await dao.createPoll(message.channel.id, descript, startDate, endDate, "");
       let createStr = descript + "\n";
