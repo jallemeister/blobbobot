@@ -1022,19 +1022,19 @@ exports.getStatsMemberByDiscordId = async (options, message) => {
 			this.getStatsMemberByDiscordIdRaw(options, message);
 			console.log("raw stats done");
 			return;
-		}
+    }
+        
 		if (options[0].indexOf("<@!") === 0) {
 			memberRes = await dao.findMemberByDiscordIdRet(options[0].slice(3,options[0].length-1));
 		} else if (options[0].indexOf("<@") === 0) {
 			memberRes = await dao.findMemberByDiscordIdRet(options[0].slice(2,options[0].length-1));
-		} else if (options.length > 0 && options[0].indexOf("<#") === 0) {
-			console.log("a reference stat");
-			let alliance = await dao.findAllianceByChannelRet(options[0].slice(2,options[0].length-1), message);	
-			memberRet = await dao.findMembersByAllianceRet(alliance[0]._id);
-			console.log("Found " + memberRet.length + " members");
 		} else {
-			console.log('looking for ' + options[0]);
-			memberRes = await dao.findMemberByNameRet(options[0]);
+      console.log('DiscordId? ' + options[0]);
+      memberRes = await dao.findMemberByDiscordIdRet(options[0]);
+      if (memberRes.length <= 0) {
+        console.log('looking for ' + options[0]);
+        memberRes = await dao.findMemberByNameRet(options[0]);
+      }
 		}
 		if (options.length > 1) {
 			minOpt = parseInt(options[1]);
