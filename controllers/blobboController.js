@@ -985,7 +985,12 @@ exports.whereisbydiscordId = async (options, message) => {
 		} else if (options[0].indexOf("<@") === 0) {
 			memberRes = await dao.findMemberByDiscordIdRet(options[0].slice(2,options[0].length-1));
 		} else {
-			memberRes = await dao.findMemberByNameRet(options[0]);
+			console.log('DiscordId? ' + options[0]);
+      memberRes = await dao.findMemberByDiscordIdRet(options[0]);
+      if (memberRes.length <= 0) {
+        console.log('looking for ' + options[0]);
+        memberRes = await dao.findMemberByNameRet(options[0]);
+      }
 		}
 	} else {
 		memberRes = await dao.findMemberByDiscordIdRet(message.author.id);
