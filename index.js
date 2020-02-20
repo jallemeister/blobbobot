@@ -15,6 +15,14 @@ const members = require("./models/members.js");
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
+var express = require('express'),
+  app = express(),
+  port = process.env.PORT || 3000;
+
+app.listen(port);
+
+console.log('todo list RESTful API server started on: ' + port);
+
 const client = new Discord.Client();
 
 
