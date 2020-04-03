@@ -104,7 +104,11 @@ function dao() {
 		  if (err) return console.log(err);
 		  // saved!
 		});
-	}
+  }
+  
+  this.getDiscordMemberInfos = async () => {
+    return await discordinfos.find().exec();
+  }
 
 	this.getMembersMissingDiscordRet = function () {
 		return members.find({ discordId: '', altOf: null }).populate('alliance').sort({ alliance: 1 }).exec();

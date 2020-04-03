@@ -678,6 +678,14 @@ exports.getMembersInfo = async (options, message) => {
 	
 }
 
+exports.listDiscordMembers = async (options, message) => {
+  let members = await dao.getDiscordMemberInfos();
+  let msg = '';
+  await asyncForMembers(members, async(member, index) => {
+    msg += member.name + ": " + member.roles + '\n';
+  })
+  message.channel.send(msg);
+}
 exports.getMissingDiscords = async (options, message) => {
 	if (options.lenght > 0) {
 		if (options[0] == 'all') {

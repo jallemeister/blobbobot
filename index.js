@@ -45,6 +45,7 @@ blobbo_controller.addCommand("close", blobbo_controller.close, "");
 blobbo_controller.addCommand("open", blobbo_controller.open, "");
 blobbo_controller.addCommand("clear", blobbo_controller.clear, "Deletes <number> of messages");
 blobbo_controller.addCommand("members", blobbo_controller.getMembersInfo, "discordid and info of members (maintenance function)", true);
+blobbo_controller.addCommand("memberinfo", blobbo_controller.listDiscordMembers, "discordid and info of members (maintenance function)", true);
 blobbo_controller.addCommand("whereis", blobbo_controller.whereisbydiscordId, "where is member last seen");
 blobbo_controller.addCommand("randommembers", blobbo_controller.randomMembers, "<nr of randoms>: return a set of random membernames");
 blobbo_controller.addCommand("missing", blobbo_controller.getMissingDiscords, "List members with no discordId, option 'all' lists all", true);
