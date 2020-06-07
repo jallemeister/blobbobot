@@ -22,7 +22,8 @@ const membersSchema = mongoose.Schema({
 	ocrName: String,
 	namecolor: String,
 	bgcolor: String,
-	notes: String
+  notes: String,
+  status: String
 });
 
 membersSchema.methods.filterName = function() {

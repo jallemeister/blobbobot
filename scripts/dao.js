@@ -195,7 +195,8 @@ function dao() {
 		var member_instance = new members({ 
 			_id: new mongoose.Types.ObjectId(),
 			name: name,
-			discordId: discordId
+      discordId: discordId,
+      status: 'new'
 		});
 
 		// Save the new model instance, passing a callback

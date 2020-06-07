@@ -684,12 +684,14 @@ exports.getMembersInfo = async (options, message) => {
   console.log('allmembers count: ' + allmembers.length + ' discords:' +newdiscords.length);
   let client = message.channel.client;
   await asyncForMembers(allmembers, async(member, index) => {
-    if (!newdiscords.some(e => e.discordId === member.discordId || e.discordId === member.altOf)) {
+    if (member.discordId || member.altOf) {
+      if (!newdiscords.some(e => e.discordId === member.discordId || e.discordId === member.altOf)) {
+        
+      let user = await client.fetchUser('365901367853711391');
       
-		let user = await client.fetchUser('365901367853711391');
-		
-		user.send("Member: " + member.name + ' deleted');
-      dao.editMemberstatus(member._id, 'deleted');
+      user.send("Member: " + member.name + ' deleted');
+        dao.editMemberstatus(member._id, 'deleted');
+      }
     }
   })
 }
