@@ -677,8 +677,8 @@ exports.getMembersInfo = async (options, message) => {
 		});
 	});
   console.log('INFO SAVED');
-  let allmembers = dao.findAllMembers();
-  let newdiscords = dao.getDiscordMemberInfos();
+  let allmembers = await dao.findAllMembersRet();
+  let newdiscords = await dao.getDiscordMemberInfos();
   console.log('allmembers count: ' + allmembers.length + ' discords:' +newdiscords.length);
   let client = message.channel.client;
   await asyncForMembers(allmembers, async(member, index) => {
