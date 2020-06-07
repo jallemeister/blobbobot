@@ -188,6 +188,21 @@ function dao() {
 		  if (err) return console.log(err);
 		  // saved!
 		});
+  }
+  
+  this.createMemberFromDiscord = function(name, discordId) {
+		console.log("New member from discord " + allianceId);
+		var member_instance = new members({ 
+			_id: new mongoose.Types.ObjectId(),
+			name: name,
+			discordId: discordId
+		});
+
+		// Save the new model instance, passing a callback
+		member_instance.save(function (err) {
+		  if (err) return console.log(err);
+		  // saved!
+		});
 	}
 	
 	this.editMember = function(id, name, allianceId, discordId, pwd, namecolor, bgcolor) {
@@ -211,6 +226,12 @@ function dao() {
 	this.editMemberBgcolor = function(id, bgcolor) {		
 		members.findByIdAndUpdate(id, { $set: { 			
 			bgcolor: bgcolor
+			}}).exec();
+  }
+  
+  this.editMemberstatus = function(id, status) {		
+		members.findByIdAndUpdate(id, { $set: { 			
+			status: status
 			}}).exec();
 	}
 	

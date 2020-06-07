@@ -668,14 +668,22 @@ exports.getMembersInfo = async (options, message) => {
 		});
 		if (!isBot) {
 			if (!existing || existing.length == 0) {
-				dao.createDiscordInfo(value.user.username, value.id, rols);
+        dao.createDiscordInfo(value.user.username, value.id, rols);
+        dao.createMemberFromDiscord(value.user.username, value.id);
 			} else {
 				dao.createDiscordInfoMemberId(value.user.username, value.id, existing[0]._id, rols);
 			}
 		}
 		});
 	});
-	
+  
+  let allmembers = dao.findAllMembers();
+  let newdiscords = dao.getDiscordMemberInfos();
+  await asyncForMembers(allmembers, async(member, index) => {
+    if (!newdiscords.some(e => e.discordId === member.discordId)) {
+      dao.editMemberstatus(member._id, 'deleted');
+    }
+  })
 }
 
 exports.listDiscordMembers = async (options, message) => {
