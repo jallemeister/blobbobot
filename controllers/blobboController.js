@@ -321,8 +321,8 @@ exports.handleCommand = async (options, message) => {
 }
 
 exports.test = async (options, message) => {
-
-  var nowDate = new Date();
+  this.getMembersInfo(options, message);
+  /* var nowDate = new Date();
   let startDate = getResetDate(nowDate);
   startDate.setDate(startDate.getDate() - 1);
   console.log("LE STARTDATE " + startDate);
@@ -375,7 +375,7 @@ exports.test = async (options, message) => {
   }
 
     
-  
+   */
 }
 
 exports.polls = async (options, message) => {
