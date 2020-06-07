@@ -680,6 +680,7 @@ exports.getMembersInfo = async (options, message) => {
   let allmembers = await dao.findAllMembersRet();
   console.log('INFO SAVED2');
   let newdiscords = await dao.getDiscordMemberInfos();
+  console.log('INFO SAVED3');
   console.log('allmembers count: ' + allmembers.length + ' discords:' +newdiscords.length);
   let client = message.channel.client;
   await asyncForMembers(allmembers, async(member, index) => {

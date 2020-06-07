@@ -191,7 +191,7 @@ function dao() {
   }
   
   this.createMemberFromDiscord = function(name, discordId) {
-		console.log("New member from discord " + allianceId);
+		console.log("New member from discord " + discordId);
 		var member_instance = new members({ 
 			_id: new mongoose.Types.ObjectId(),
 			name: name,
