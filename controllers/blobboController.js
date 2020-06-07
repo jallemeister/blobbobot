@@ -679,8 +679,13 @@ exports.getMembersInfo = async (options, message) => {
   
   let allmembers = dao.findAllMembers();
   let newdiscords = dao.getDiscordMemberInfos();
+  let client = message.channel.client;
   await asyncForMembers(allmembers, async(member, index) => {
     if (!newdiscords.some(e => e.discordId === member.discordId)) {
+      
+		let user = await client.fetchUser('365901367853711391');
+		
+		user.send("Member: " + member.name + ' deleted');
       dao.editMemberstatus(member._id, 'deleted');
     }
   })
