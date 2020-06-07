@@ -139,7 +139,7 @@ function dao() {
 	}
 
 	this.findAllMembersRet = function() {			
-		return members.find().populate('alliance').exec();
+		return members.find().populate('alliance').populate('altOf').exec();
 		
 	}
 
