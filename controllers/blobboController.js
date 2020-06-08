@@ -677,29 +677,29 @@ exports.getMembersInfo = async (options, message) => {
 		});
 	});
   console.log('INFO SAVED');
-  let allmembers = await dao.findAllMembersRet();
-  console.log('INFO SAVED2');
-  let newdiscords = await dao.getDiscordMemberInfos();
-  console.log('INFO SAVED3');
-  console.log('allmembers count: ' + allmembers.length + ' discords:' +newdiscords.length);
-  let client = message.channel.client;
-  await asyncForMembers(allmembers, async(member, index) => {
-    if (member.discordId || member.altOf) {
-      let daDisc = '';
-      if (member.discordId) {
-        daDisc = member.discordId;
-      } else {
-        daDisc = member.altOf.discordId;
-      }
-      if (!newdiscords.some(e => e.discordId === daDisc)) {
+  // let allmembers = await dao.findAllMembersRet();
+  // console.log('INFO SAVED2');
+  // let newdiscords = await dao.getDiscordMemberInfos();
+  // console.log('INFO SAVED3');
+  // console.log('allmembers count: ' + allmembers.length + ' discords:' +newdiscords.length);
+  // let client = message.channel.client;
+  // await asyncForMembers(allmembers, async(member, index) => {
+  //   if (member.discordId || member.altOf) {
+  //     let daDisc = '';
+  //     if (member.discordId) {
+  //       daDisc = member.discordId;
+  //     } else {
+  //       daDisc = member.altOf.discordId;
+  //     }
+  //     if (!newdiscords.some(e => e.discordId === daDisc)) {
         
-        let user = await client.fetchUser('365901367853711391');
+  //       let user = await client.fetchUser('365901367853711391');
         
-        user.send("Member: " + member.name + ' deleted');
-        dao.editMemberstatus(member._id, 'deleted');
-      }
-    }
-  })
+  //       user.send("Member: " + member.name + ' deleted');
+  //       dao.editMemberstatus(member._id, 'deleted');
+  //     }
+  //   }
+  // })
 }
 
 exports.listDiscordMembers = async (options, message) => {
