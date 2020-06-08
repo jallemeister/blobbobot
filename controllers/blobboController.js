@@ -669,7 +669,7 @@ exports.getMembersInfo = async (options, message) => {
 		if (!isBot) {
 			if (!existing || existing.length == 0) {
         dao.createDiscordInfo(value.user.username, value.id, rols);
-        dao.createMemberFromDiscord(value.user.username, value.id);
+        //dao.createMemberFromDiscord(value.user.username, value.id);
 			} else {
 				dao.createDiscordInfoMemberId(value.user.username, value.id, existing[0]._id, rols);
 			}
