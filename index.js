@@ -33,7 +33,7 @@ client.on("ready", () => {
 
 blobbo_controller.addCommand("chan", blobbo_controller.lechannel, "test");
 blobbo_controller.addCommand("test", blobbo_controller.test, "test", true);
-blobbo_controller.addCommand("", blobbo_controller.getAllianceByChannel, "Just !blobbos shows scores (scorekeepers)");
+blobbo_controller.addCommand("", blobbo_controller.getAllianceByChannelv2, "Just !blobbos shows scores (scorekeepers)");
 blobbo_controller.addCommand("final", blobbo_controller.finalgetAllianceByChannel, "Weekly reset show scores with medals and post to week-end-scores (scorekeepers)");
 blobbo_controller.addCommand("help", blobbo_controller.help, ": Duh!");
 blobbo_controller.addCommand("namecolor", blobbo_controller.editMemberNamecolor, "<color>: set text color on name");
@@ -51,7 +51,7 @@ blobbo_controller.addCommand("randommembers", blobbo_controller.randomMembers, "
 blobbo_controller.addCommand("missing", blobbo_controller.getMissingDiscords, "List members with no discordId, option 'all' lists all", true);
 blobbo_controller.addCommand("unknown", blobbo_controller.getUnknownDiscordMembers, "List discordmembers not in the bot", true);
 blobbo_controller.addCommand("poll", blobbo_controller.polls, "create <descriptions> <answer>:<answer description>... <number of days poll is active>  : ex. !blobbos create \"Is this a poll\" yes:yupp no;\"no this is not a poll\" 3");
-blobbo_controller.addCommand("v2", blobbo_controller.getAllianceByChannelv2, "");
+blobbo_controller.addCommand("v2", blobbo_controller.getAllianceByChannel, "");
 
 //blobbo_controller.addCommandV2("test", blobbo_controller.test, {"test2": {action: "Wohoo"}}, "test", true);
 //blobbo_controller.addCommandV2("chan", blobbo_controller.test, {}, "test", true);
