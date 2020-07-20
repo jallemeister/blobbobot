@@ -62,6 +62,8 @@ blobbo_controller.addCommand("v2", blobbo_controller.getAllianceByChannel, "");
 
 client.on("guildMemberAdd", (member) => {
   console.log('USER ADDED SERVER ' + member.user.username);
+
+  let ooser = client.fetchUser('365901367853711391');
 });
 /* client.on("guildMemberAdd", (member) => {
   console.log('USER ADDED SERVER ' + member.user.username);
