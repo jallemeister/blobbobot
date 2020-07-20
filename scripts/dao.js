@@ -73,7 +73,7 @@ function dao() {
 		});
   } */
   
-  this.clearInfo = function() {
+  this.clearInfo = async() => {
     discordinfos.updateMany({},{ $set: { updated: false}},function (err) {
       if (err) return console.log(err);
       // saved!

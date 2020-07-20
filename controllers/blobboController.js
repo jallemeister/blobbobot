@@ -678,6 +678,7 @@ exports.getMembersInfo = async (options, message) => {
         if (!oldDisc || oldDisc.length == 0) {
           dao.createDiscordInfoMemberId(value.user.username, value.id, existing[0]._id, rols);
         } else {
+          console.log('Update existing ' + oldDisc[0].discordname);
           dao.updateDiscordInfoMemberId(oldDisc[0]._id, value.user.username, value.id, existing[0]._id, rols);
         }
 			}
