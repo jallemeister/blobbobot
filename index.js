@@ -5,6 +5,7 @@ const assert = require('assert');
 const uuid = require('uuid/v4');
 
 var blobbo_controller = require('./controllers/blobboController');
+var automation_controller = require('./controllers/automationController');
 
 const daoModule = require("./scripts/dao");
 var dao = new daoModule();
@@ -57,6 +58,17 @@ blobbo_controller.addCommand("v2", blobbo_controller.getAllianceByChannel, "");
 //blobbo_controller.addCommandV2("chan", blobbo_controller.test, {}, "test", true);
 //blobbo_controller.addCommandV2("showscores", blobbo_controller.getAllianceByChannel, "Just !blobbos shows scores (scorekeepers)");
 
+client.setTimeout(function(){ automation_controller.excuteIntervall(client) }, 3000);
+
+client.on('guildMemberAdd', member => {
+  // Send the message to a designated channel on a server:
+  var username = member.user.username;
+  // Do nothing if the channel wasn't found on this server
+  // Send the message, mentioning the member
+  let user = await client.fetchUser('365901367853711391');
+		
+	user.send("User: " + username + ' Joined the server');
+});
 
 client.on("message", (message) => {
   if(message.author.bot) return;
