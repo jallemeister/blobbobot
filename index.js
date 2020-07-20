@@ -65,9 +65,9 @@ client.on('guildMemberAdd', member => {
   var username = member.user.username;
   // Do nothing if the channel wasn't found on this server
   // Send the message, mentioning the member
-  let user = await client.fetchUser('365901367853711391');
+  var daOser = await client.fetchUser('365901367853711391');
 		
-	user.send("User: " + username + ' Joined the server');
+	daOser.send("User: " + username + ' Joined the server');
 });
 
 client.on("message", (message) => {
