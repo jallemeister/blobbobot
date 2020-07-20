@@ -5,7 +5,7 @@ var automationDao = new automationDaoModule();
 
 exports.excuteIntervall = async (client) => {
 
-  var comands = await automationDao.findIntervalActions();
+  var commands = await automationDao.findIntervalActions();
 
   commands.forEach(async function(command, key, map) {
     if (command.command === 'sayHi') {
