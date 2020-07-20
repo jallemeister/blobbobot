@@ -30,6 +30,7 @@ const client = new Discord.Client();
 
 client.on("ready", () => {
   console.log("I am ready!");
+  client.setTimeout(automation_controller.excuteIntervall, 3000, client);
 });
 
 blobbo_controller.addCommand("chan", blobbo_controller.lechannel, "test");
@@ -58,7 +59,7 @@ blobbo_controller.addCommand("v2", blobbo_controller.getAllianceByChannel, "");
 //blobbo_controller.addCommandV2("chan", blobbo_controller.test, {}, "test", true);
 //blobbo_controller.addCommandV2("showscores", blobbo_controller.getAllianceByChannel, "Just !blobbos shows scores (scorekeepers)");
 
-client.setTimeout(function(){ automation_controller.excuteIntervall(client); }, 3000);
+
 
 client.on('guildMemberAdd', member => {
   // Send the message to a designated channel on a server:
