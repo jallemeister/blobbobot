@@ -60,7 +60,9 @@ blobbo_controller.addCommand("v2", blobbo_controller.getAllianceByChannel, "");
 //blobbo_controller.addCommandV2("showscores", blobbo_controller.getAllianceByChannel, "Just !blobbos shows scores (scorekeepers)");
 
 
-
+client.on("guildMemberAdd", (member) => {
+  console.log('USER ADDED SERVER ' + member.user.username);
+});
 /* client.on("guildMemberAdd", (member) => {
   console.log('USER ADDED SERVER ' + member.user.username);
   // Send the message to a designated channel on a server:
