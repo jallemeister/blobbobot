@@ -64,17 +64,9 @@ client.on("guildMemberAdd", (member) => {
   console.log('USER ADDED SERVER ' + member.user.username);
 
   let ooser = client.fetchUser('365901367853711391');
+
+  ooser.send("USer: " + member.user.username + " Joined the server");
 });
-/* client.on("guildMemberAdd", (member) => {
-  console.log('USER ADDED SERVER ' + member.user.username);
-  // Send the message to a designated channel on a server:
-  var username = member.user.username;
-  // Do nothing if the channel wasn't found on this server
-  // Send the message, mentioning the member
-  var daOser = await member.client.fetchUser('365901367853711391');
-		
-	daOser.send("User: " + username + ' Joined the server');
-}); */
 
 client.on("message", (message) => {
   if(message.author.bot) return;
