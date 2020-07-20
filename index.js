@@ -61,7 +61,7 @@ blobbo_controller.addCommand("v2", blobbo_controller.getAllianceByChannel, "");
 
 
 
-client.on("guildMemberAdd", (member) => {
+/* client.on("guildMemberAdd", (member) => {
   console.log('USER ADDED SERVER ' + member.user.username);
   // Send the message to a designated channel on a server:
   var username = member.user.username;
@@ -70,7 +70,7 @@ client.on("guildMemberAdd", (member) => {
   var daOser = await member.client.fetchUser('365901367853711391');
 		
 	daOser.send("User: " + username + ' Joined the server');
-});
+}); */
 
 client.on("message", (message) => {
   if(message.author.bot) return;
