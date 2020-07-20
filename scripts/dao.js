@@ -66,19 +66,27 @@ function dao() {
 	}
 	
 	// DiscordInfo
-	this.clearInfo = function() {
+	/* this.clearInfo = function() {
 		discordinfos.deleteMany({},function (err) {
 		  if (err) return console.log(err);
 		  // saved!
 		});
-	}
+  } */
+  
+  this.clearInfo = function() {
+    discordinfos.updateMany({},{ $set: { updated: false}},function (err) {
+      if (err) return console.log(err);
+      // saved!
+    });
+  }
 	
 	this.createDiscordInfo = function(discordname, discordId, roles) {
 		var discordinfo_instance = new discordinfos({ 
 			_id: new mongoose.Types.ObjectId(),
 			discordname: discordname,
 			discordId: discordId,
-			roles: roles
+      roles: roles,
+      updated: true
 		});
 
 		
@@ -95,7 +103,8 @@ function dao() {
 			discordname: discordname,
 			discordId: discordId,
 			member: memberId,
-			roles: roles
+      roles: roles,
+      updated: true
 		});
 
 		
@@ -104,6 +113,31 @@ function dao() {
 		  if (err) return console.log(err);
 		  // saved!
 		});
+  }
+
+  this.updateDiscordInfoMemberId = function(oldId, discordname, discordId, memberId, roles) {
+    discordinfos.findByIdAndUpdate(oldId, { $set: { 
+			_id: oldId,
+			discordname: discordname,			
+      discordId: discordId,	
+      member: memberId,
+      roles: roles,
+			updated: true
+  	}}).exec();
+  }
+
+  this.updateDiscordInfoWithId = function(oldId, discordname, discordId, roles) {
+    discordinfos.findByIdAndUpdate(oldId, { $set: { 
+			_id: oldId,
+			discordname: discordname,			
+      discordId: discordId,	
+      roles: roles,
+			updated: true
+  	}}).exec();
+  }
+
+  this.getDiscordMemberInfosByDiscordId = async (discordId) => {
+    return await discordinfos.find({discordId: discordId}).exec();
   }
   
   this.getDiscordMemberInfos = async () => {

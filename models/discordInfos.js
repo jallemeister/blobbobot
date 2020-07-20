@@ -8,7 +8,8 @@ const discordinfosSchema = mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'members'
 	},
-	roles: String
+  roles: String,
+  updated: { type: Boolean, default: false}
 });
 
 module.exports = mongoose.model("discordinfos", discordinfosSchema);

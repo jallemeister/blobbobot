@@ -667,11 +667,19 @@ exports.getMembersInfo = async (options, message) => {
 			}
 		});
 		if (!isBot) {
+      let oldDisc = await dao.getDiscordMemberInfosByDiscordId(value.id);
 			if (!existing || existing.length == 0) {
-        dao.createDiscordInfo(value.user.username, value.id, rols);
-        //dao.createMemberFromDiscord(value.user.username, value.id);
-			} else {
-				dao.createDiscordInfoMemberId(value.user.username, value.id, existing[0]._id, rols);
+        if (!oldDisc || oldDisc.length == 0) {
+          dao.createDiscordInfo(value.user.username, value.id, rols);
+        } else {
+          dao.updateDiscordInfoWithId(oldDisc[0]._id, value.user.username, value.id, existing[0]._id, rols);
+        }
+      } else {
+        if (!oldDisc || oldDisc.length == 0) {
+          dao.createDiscordInfoMemberId(value.user.username, value.id, existing[0]._id, rols);
+        } else {
+          dao.updateDiscordInfoMemberId(oldDisc[0]._id, value.user.username, value.id, existing[0]._id, rols);
+        }
 			}
 		}
 		});
@@ -710,6 +718,7 @@ exports.listDiscordMembers = async (options, message) => {
   })
   message.channel.send(msg);
 }
+
 exports.getMissingDiscords = async (options, message) => {
 	if (options.lenght > 0) {
 		if (options[0] == 'all') {
