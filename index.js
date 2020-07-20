@@ -61,7 +61,7 @@ blobbo_controller.addCommand("v2", blobbo_controller.getAllianceByChannel, "");
 
 
 
-client.on('guildMemberAdd', member => {
+client.on('guildMemberAdd', (member) => {
   // Send the message to a designated channel on a server:
   var username = member.user.username;
   // Do nothing if the channel wasn't found on this server
