@@ -547,7 +547,7 @@ exports.setPassword = async (options, message) => {
 		memberRes[0].save();
 		let client = message.channel.client;
 		let user = await client.fetchUser(memberRes[0].discordId);
-		user.send("Your username: " + memberRes[0].username + "\nYour password: " + pwd + "\n\nhttps://blooming-cove-27916.herokuapp.com");
+		user.send("Your username: " + memberRes[0].username + "\nYour password: " + pwd + "\n\nhttps://cryptic-earth-19665.herokuapp.com");
 		let adminUser = await client.fetchUser('365901367853711391');
     adminUser.send("User added to page " + memberRes[0].username);
     adminUser = await client.fetchUser('555482097490329610');
