@@ -126,7 +126,7 @@ client.on("message", (message) => {
   } while (match != null);
   
   console.log("OPT: " + myArray);
-  if (command === "blobbos") {	  
+  if (command === config.command) {	  
     blobbo_controller.handleCommand(fnrg, message);
     //blobbo_controller.handleCommandV2(myArray, message);
   }
