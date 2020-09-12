@@ -1091,7 +1091,7 @@ exports.getStatsMemberByDiscordId = async (options, message) => {
 	}
 	
 	if (memberRes.length > 0) {
-		console.log("FOUND MEMBER: " + memberRes);
+		console.log("FOUND MEMBER: " + memberRes); 
 		let startDate = new Date();
 		startDate.setMonth(startDate.getMonth() - 3);
 		console.log("STAT StartDate " + startDate);
