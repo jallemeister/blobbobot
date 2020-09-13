@@ -49,7 +49,11 @@ function dao() {
       name: allianceName,
       channelId: channelId,
       isAdmin: isAdmin,
-      isPublic: isPublic
+      isPublic: isPublic,
+      minimum: 100,
+      minimumClose: 100,
+      greatScore: 100,
+      awesomeScore: 100
     });
     // Save the new model instance, passing a callback
     alliance_instance.save(function (err) {
