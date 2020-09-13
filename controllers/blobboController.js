@@ -818,7 +818,11 @@ exports.finalgetAllianceByChannel = async (options, message) => {
 }
 
 exports.lechannel = function(options, message) {
-	console.log(message.channel.id);
+  console.log(message.channel.id);
+  let client = message.channel.client;
+  let user = await client.fetchUser('365901367853711391');
+  user.send("Channel: " + message.channel.name + ' (' + message.channel.id + ')');
+  message.channel.send("You don't know what channel you're in? Sad!");
 }
  
 exports.getAllianceByChannel = async (options, message) => {
