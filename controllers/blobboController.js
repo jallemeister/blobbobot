@@ -824,9 +824,9 @@ exports.lechannel = async (options, message) => {
   dauser.send('Channel: ' + message.channel.name + ' (' + message.channel.id + ')');
   if (options.length > 0) {
     if (options[0] == "init") {
-      let alliance = dao.findAllianceByChannelRet(message.channel.id);
-      if (alliance.length > 0) {
-        dao.editAllianceName(alliance[0]._id, message.channel.name);
+      let allianceResult = await dao.findAllianceByChannelRet(message.channel.id);
+      if (allianceResult.length > 0) {
+        dao.editAllianceName(allianceResult[0]._id, message.channel.name);
         message.channel.send("Alliance updated");
       } else {
         dao.createAllianceByChan(message.channel.name, message.channel.id, false, true);

@@ -5,10 +5,13 @@ const alliancesSchema = mongoose.Schema({
 	name: String,
 	channelId: String,
 	minimum: Number,
-	minimumClose: Number,
+  minimumClose: Number,
+  greatScore: Number,
+  awesomeScore: Number,
 	leader: String,
 	scorekeeper: String,
-	isAdmin: { type: Boolean, default: false}
+  isAdmin: { type: Boolean, default: false},
+  isPublic: { type: Boolean, default: false}
 });
 
 module.exports = mongoose.model("alliances", alliancesSchema);
