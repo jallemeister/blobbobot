@@ -43,17 +43,19 @@ function dao() {
 		return alliances.find({ channelId: channelId });
 	}
 	
-	this.createAlliance = function(name) {
-		var alliance_instance = new alliances({ 
-		_id: new mongoose.Types.ObjectId(),
-		name: name });
-
-		// Save the new model instance, passing a callback
-		alliance_instance.save(function (err) {
-		  if (err) return console.log(err);
-		  // saved!
-		});
-	}
+	this.createAllianceByChan = function (allianceName, channelId) {
+    var alliance_instance = new alliances({
+      _id: new mongoose.Types.ObjectId(),
+      name: allianceName,
+      channelId: channelId
+    });
+    // Save the new model instance, passing a callback
+    alliance_instance.save(function (err) {
+      if (err)
+        return console.log(err);
+      // saved!
+    });
+  }
 	
 	this.editAlliance = function(allianceId, allianceName, channelId, minimum, minimumClose) {
 		alliances.findByIdAndUpdate(allianceId, { $set: { 
@@ -63,7 +65,15 @@ function dao() {
 			minimum: minimum,			
 			minimumClose: minimumClose}}).exec();
 	
-	}
+  }
+  
+  this.editAllianceName = function (allianceId, allianceName) {
+    alliances.findByIdAndUpdate(allianceId, {
+    $set: {
+      name: allianceName
+    }
+    }).exec();
+  }
 	
 	// DiscordInfo
 	/* this.clearInfo = function() {

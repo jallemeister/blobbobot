@@ -822,6 +822,19 @@ exports.lechannel = async (options, message) => {
   let client = message.channel.client;
   let dauser = await client.fetchUser('365901367853711391');
   dauser.send('Channel: ' + message.channel.name + ' (' + message.channel.id + ')');
+  if (options.length > 0) {
+  } else {
+    if (options[0] == "init") {
+      let alliance = dao.findAllianceByChannelRet(message.channel.id);
+      if (alliance.length > 0) {
+        dao.editAllianceName(alliance[0]._id, message.channel.name);
+        message.channel.send("Alliance updated");
+      } else {
+        dao.createAllianceByChan(message.channel.name, message.channel.id);
+        message.channel.send("Alliance " + message.channel.name + " created. Pls add minimums from the web");
+      }
+    }  
+  }
   message.channel.send("You dont know what channel you in? Sad!");
 }
  

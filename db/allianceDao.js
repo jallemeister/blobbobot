@@ -30,6 +30,28 @@ class allianceDao {
         this.findAllianceByChannelRet = function( channelId){
             return alliances.find({ channelId: channelId });
         };
+
+        this.createAlliance = function (allianceName, channelId) {
+          var alliance_instance = new alliances({
+            _id: new mongoose.Types.ObjectId(),
+            name: allianceName,
+            channelId: channelId
+          });
+          // Save the new model instance, passing a callback
+          alliance_instance.save(function (err) {
+            if (err)
+              return console.log(err);
+            // saved!
+          });
+        };
+
+        this.editAllianceName = function (allianceId, allianceName) {
+          alliances.findByIdAndUpdate(allianceId, {
+          $set: {
+            name: allianceName
+          }
+          }).exec();
+        };
     }
 }
 
