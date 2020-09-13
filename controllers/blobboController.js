@@ -829,7 +829,7 @@ exports.lechannel = async (options, message) => {
         dao.editAllianceName(alliance[0]._id, message.channel.name);
         message.channel.send("Alliance updated");
       } else {
-        dao.createAllianceByChan(message.channel.name, message.channel.id);
+        dao.createAllianceByChan(message.channel.name, message.channel.id, false, true);
         message.channel.send("Alliance " + message.channel.name + " created. Pls add minimums from the web");
       }
     }  

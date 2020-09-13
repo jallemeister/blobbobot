@@ -43,11 +43,13 @@ function dao() {
 		return alliances.find({ channelId: channelId });
 	}
 	
-	this.createAllianceByChan = function (allianceName, channelId) {
+	this.createAllianceByChan = function (allianceName, channelId, isAdmin, isPublic) {
     var alliance_instance = new alliances({
       _id: new mongoose.Types.ObjectId(),
       name: allianceName,
-      channelId: channelId
+      channelId: channelId,
+      isAdmin: isAdmin,
+      isPublic: isPublic
     });
     // Save the new model instance, passing a callback
     alliance_instance.save(function (err) {
