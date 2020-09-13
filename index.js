@@ -72,7 +72,7 @@ client.on("message", (message) => {
   if(message.author.bot) return;
 
   // Welcome message
-  if (message.channel.id == '501018898674483230' ) {
+  if (message.channel.id == '745367003128397910' ) {
     blobbo_controller.getMembersInfo("options", message);
     return;
   }
