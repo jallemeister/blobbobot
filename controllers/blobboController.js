@@ -101,7 +101,7 @@ exports.clear = async (options, message) => {
 	}
 }
 exports.close = async (options, message) => {	
-	if (message.channel.id == '315937911134748674' ) {
+	if (message.channel.id == '746571375468216410' ) {
 	await dao.closeAdmin();
 	message.channel.send("SHUTTING DOWN!!! OH SHIT!!!");
 	} else {
@@ -110,7 +110,7 @@ exports.close = async (options, message) => {
 }
 
 exports.open = async (options, message) => {	
-	if (message.channel.id == '315937911134748674' ) {
+	if (message.channel.id == '746571375468216410' ) {
 		await dao.openAdmin();
 		message.channel.send("Ok We are back in business");
 	} else {
