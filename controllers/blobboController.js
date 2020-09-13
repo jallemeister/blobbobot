@@ -823,7 +823,6 @@ exports.lechannel = async (options, message) => {
   let dauser = await client.fetchUser('365901367853711391');
   dauser.send('Channel: ' + message.channel.name + ' (' + message.channel.id + ')');
   if (options.length > 0) {
-  } else {
     if (options[0] == "init") {
       let alliance = dao.findAllianceByChannelRet(message.channel.id);
       if (alliance.length > 0) {
@@ -834,8 +833,10 @@ exports.lechannel = async (options, message) => {
         message.channel.send("Alliance " + message.channel.name + " created. Pls add minimums from the web");
       }
     }  
+  } else {
+    message.channel.send("You dont know what channel you in? Sad!");
   }
-  message.channel.send("You dont know what channel you in? Sad!");
+  
 }
  
 exports.getAllianceByChannel = async (options, message) => {
