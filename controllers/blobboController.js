@@ -566,7 +566,7 @@ exports.setPassword = async (options, message) => {
 		let pwd = memberRes[0].username + random;
 		memberRes[0].setPassword(pwd, true);
 		memberRes[0].save();
-		message.author.send("Your username: " + memberRes[0].username + "\nYour password: " + pwd + "\n\nhttps://blooming-cove-27916.herokuapp.com");
+		message.author.send("Your username: " + memberRes[0].username + "\nYour password: " + pwd + "\n\nhttps://cryptic-earth-19665.herokuapp.com");
 	}
 	
 }
@@ -799,8 +799,9 @@ exports.finalgetAllianceByChannel = async (options, message) => {
 			if (final == 1) {				
 				await medals(alliance[0]._id, message);
 
-				console.log("Getting channel");
-				var channel = await message.guild.channels.find(channel => channel.name === "week-end-scores");
+        console.log("Getting channel");
+        var channel = message.guild.channels.cache.get('759078485909831711');
+				//var channel = await message.guild.channels.find(channel => channel.name === "week-end-scores");
 				console.log("chan name: " + channel.name);
 				channel.send(alliance[0].name);
 				channel.send({files: [pngName]});
