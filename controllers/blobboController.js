@@ -802,7 +802,7 @@ exports.finalgetAllianceByChannel = async (options, message) => {
 				await medals(alliance[0]._id, message);
 
         console.log("Getting channel");
-        var channel = message.guild.channels.cache.get('759078485909831711');
+        var channel = message.guild.channels.get('759078485909831711');
 				//var channel = await message.guild.channels.find(channel => channel.name === "week-end-scores");
 				console.log("chan name: " + channel.name);
 				channel.send(alliance[0].name);
