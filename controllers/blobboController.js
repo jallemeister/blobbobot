@@ -321,7 +321,9 @@ exports.handleCommand = async (options, message) => {
 }
 
 exports.test = async (options, message) => {
-  this.getMembersInfo(options, message);
+  //this.getMembersInfo(options, message);
+  var channel = message.guild.channels.cache.get('759078485909831711');
+  channel.send('Yupp');
   /* var nowDate = new Date();
   let startDate = getResetDate(nowDate);
   startDate.setDate(startDate.getDate() - 1);
