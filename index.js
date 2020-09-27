@@ -62,10 +62,14 @@ blobbo_controller.addCommand("v2", blobbo_controller.getAllianceByChannel, "");
 client.on("guildMemberAdd", (member) => {
   console.log('USER ADDED SERVER ' + member.user.username);
 
-  let ooser = await client.fetchUser('365901367853711391');
-
-  ooser.send("USer: " + member.user.username + " Joined the server");
-});
+  client.fetchUser('365901367853711391')
+    .then((User) => {
+      User.send("USer: " + member.user.username + " Joined the server");
+     })
+  .catch((err) => {
+    console.error(err);
+    });
+  });
 
 client.on("message", (message) => {
   if(message.author.bot) return;
