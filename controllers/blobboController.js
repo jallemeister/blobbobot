@@ -789,7 +789,7 @@ exports.finalgetAllianceByChannel = async (options, message) => {
 		if (alliance && alliance.length > 0) {
 			let title = "Getting scores for " + alliance[0].name;
 			message.channel.send(title);
-			await bild(alliance[0]._id);
+			await bildv2(alliance[0]._id);
 			
 			console.log("BILD DONE");
 			let pngName = alliance[0]._id + '.png';
