@@ -684,8 +684,8 @@ exports.getMembersInfo = async (options, message) => {
           dao.updateDiscordInfoMemberId(oldDisc[0]._id, value.user.username, value.id, existing[0]._id, rols);
         }
 			}
-		}
-	}*/);
+		}*/
+	});
   console.log('INFO SAVED');
   // let allmembers = await dao.findAllMembersRet();
   // console.log('INFO SAVED2');
