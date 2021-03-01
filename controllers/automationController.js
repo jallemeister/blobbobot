@@ -9,7 +9,7 @@ exports.excuteIntervall = async (client) => {
 
   commands.forEach(async function(command, key, map) {
     if (command.command === 'sayHi') {
-      let user = await client.fetchUser(command.user);
+      let user = await client.user.fetch(command.user);
 		  console.log('================ ======INTERVALL ' + command.command);
 
 		user.send("This is just a message");

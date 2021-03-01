@@ -653,10 +653,10 @@ exports.getMembersInfo = async (options, message) => {
 	//	console.log("RROOOLE " + key + " : " + value.name);
 	//});
 	let blabla = await dao.clearInfo();
-  let LuMembs = await guild.members.fetch();
+	guild.members.fetch().then(g =>{
     console.log('got them members')
-    console.log(LuMembs)
-		LuMembs.forEach(async function(value, key, map) {
+    console.log(g.members)
+		g.members.forEach(async function(value, key, map) {
 		//console.log(key + " : " + value.user.username + " " + value.id + " obj " + value.roles);
 		console.log(value.user.username);
 		let existing = await dao.findMemberByDiscordIdRet(value.id);
@@ -688,7 +688,7 @@ exports.getMembersInfo = async (options, message) => {
 			}
 		}
 		});
-	
+	});
   console.log('INFO SAVED');
   // let allmembers = await dao.findAllMembersRet();
   // console.log('INFO SAVED2');
