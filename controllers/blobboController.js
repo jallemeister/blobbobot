@@ -653,7 +653,7 @@ exports.getMembersInfo = async (options, message) => {
 	//	console.log("RROOOLE " + key + " : " + value.name);
 	//});
 	let blabla = await dao.clearInfo();
-	guild.fetchMembers().then(g =>{
+	guild.members.fetch().then(g =>{
     console.log('got them members')
     console.log(g.members)
 		g.members.forEach(async function(value, key, map) {
