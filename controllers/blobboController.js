@@ -653,12 +653,11 @@ exports.getMembersInfo = async (options, message) => {
 	//	console.log("RROOOLE " + key + " : " + value.name);
 	//});
 	let blabla = await dao.clearInfo();
-  guild.members.fetch().then(console.log
-    /*async value =>{
+  guild.members.fetch().then(async value =>{
     
 		//console.log(key + " : " + value.user.username + " " + value.id + " obj " + value.roles);
 		console.log(value.user.username);
-		let existing = await dao.findMemberByDiscordIdRet(value.id);
+		/*let existing = await dao.findMemberByDiscordIdRet(value.id);
 		let rols = '';
 		let isBot = false;
 		value.roles.forEach(function(value, key){
