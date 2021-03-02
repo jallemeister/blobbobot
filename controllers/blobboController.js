@@ -656,7 +656,7 @@ exports.getMembersInfo = async (options, message) => {
   await guild.members.fetch().then(g =>{
     
     g.forEach(async value => {
-		console.log(key + " : " + value.user.username + " " + value.id + " obj " + value.roles);
+		console.log(value.user.username + " " + value.id + " obj " + value.roles);
     //console.log("A USEER");
 		//console.log(value.user);
 		let existing = await dao.findMemberByDiscordIdRet(value.id);
