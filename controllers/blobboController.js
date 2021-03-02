@@ -656,10 +656,10 @@ exports.getMembersInfo = async (options, message) => {
   await guild.members.fetch().then(g =>{
     
     g.forEach(async value => {
-		//console.log(key + " : " + value.user.username + " " + value.id + " obj " + value.roles);
-    console.log("A USEER");
-		console.log(value.user);
-		/*let existing = await dao.findMemberByDiscordIdRet(value.id);
+		console.log(key + " : " + value.user.username + " " + value.id + " obj " + value.roles);
+    //console.log("A USEER");
+		//console.log(value.user);
+		let existing = await dao.findMemberByDiscordIdRet(value.id);
 		let rols = '';
 		let isBot = false;
 		value.roles.forEach(function(value, key){
@@ -686,7 +686,7 @@ exports.getMembersInfo = async (options, message) => {
           dao.updateDiscordInfoMemberId(oldDisc[0]._id, value.user.username, value.id, existing[0]._id, rols);
         }
 			}
-		}*/
+		}
   });
 	});
   console.log('INFO SAVED');
