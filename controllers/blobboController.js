@@ -655,7 +655,7 @@ exports.getMembersInfo = async (options, message) => {
 	let blabla = await dao.clearInfo();
   await guild.members.fetch().then(g =>{
     
-    g.user.forEach(async function(value, key, map) {
+    g.forEach(async function(value, key, map) {
 		//console.log(key + " : " + value.user.username + " " + value.id + " obj " + value.roles);
     console.log("A USEER");
 		console.log(value.user);
