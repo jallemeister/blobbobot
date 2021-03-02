@@ -662,7 +662,7 @@ exports.getMembersInfo = async (options, message) => {
 		let existing = await dao.findMemberByDiscordIdRet(value.id);
 		let rols = '';
 		let isBot = false;
-		value.roles.forEach(function(value, key){
+		value.roles.cache.forEach(function(value, key){
 			if (value.name != '@everyone' ) {
 				rols += value.name + ", ";
 			}
