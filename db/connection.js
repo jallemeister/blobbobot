@@ -6,7 +6,7 @@ mongoose.Promise = global.Promise;
 
 if (mongoose.connection.readyState == 0 ) {
 	let userinfo = process.env.MON_USE + ':' + process.env.MON_NYCKELN;
-	mongoose.connect('mongodb+srv://' + userinfo + '@cluster0-j0bpo.mongodb.net/blubbobot?retryWrites=true', { useNewUrlParser: true });
+	mongoose.connect('mongodb+srv://' + userinfo + '@cluster0-j0bpo.mongodb.net/blubbobot?retryWrites=true', { useNewUrlParser: true,  useUnifiedTopology: true  });
 } else {
 	console.log("Already connected " + mongoose.connection.readyState);
 
