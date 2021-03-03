@@ -94,7 +94,7 @@ exports.clear = async (options, message) => {
 	console.log("Options " + options.length);
 	if (options.length > 0) {
 		let nrDel = options[0];
-		let fetched = await message.channel.fetchMessages({limit: nrDel});
+		let fetched = await message.channel.messages.fetch({limit: nrDel});
 		console.log("nr fetched " + fetched.length);
 		message.channel.bulkDelete(fetched)
 			.catch(error => message.channel.send('Error: ' + error));
@@ -548,18 +548,18 @@ exports.setPassword = async (options, message) => {
 		memberRes[0].setPassword(pwd, true);
 		memberRes[0].save();
 		let client = message.channel.client;
-		let user = await client.fetchUser(memberRes[0].discordId);
+		let user = await client.users.fetch(memberRes[0].discordId);
 		user.send("Your username: " + memberRes[0].username + "\nYour password: " + pwd + "\n\nhttps://cryptic-earth-19665.herokuapp.com");
-		let adminUser = await client.fetchUser('365901367853711391');
+		let adminUser = await client.users.fetch('365901367853711391');
     adminUser.send("User added to page " + memberRes[0].username);
-    adminUser = await client.fetchUser('555482097490329610');
+    adminUser = await client.users.fetch('555482097490329610');
 		adminUser.send("User added to page " + memberRes[0].username);
 	} else {
 		let names = message.author.username.split(' ');
 		let client = message.channel.client;
-		let adminUser = await client.fetchUser('365901367853711391');
+		let adminUser = await client.users.fetch('365901367853711391');
     adminUser.send("User: " + names[0] + ' Id ' + message.author.id + ' tried adding');
-    adminUser = await client.fetchUser('555482097490329610');
+    adminUser = await client.users.fetch('555482097490329610');
 		adminUser.send("User added to page " + memberRes[0].username);
 		await addMember(message);
 		memberRes = await dao.findMemberByDiscordIdRet(message.author.id);
@@ -598,12 +598,12 @@ exports.editMemberNamecolor = async (options, message) => {
 		let pngName = memberRes[0]._id + '.png';
 		
 		let client = message.channel.client;
-		let user = await client.fetchUser(memberRes[0].discordId);
+		let user = await client.users.fetch(memberRes[0].discordId);
 		user.send({files: [pngName]});
 	} else {
 		message.channel.send("I am sorry I have no idea who you are. Are you sure you exists?");	
 		let client = message.channel.client;
-		let user = await client.fetchUser('365901367853711391');
+		let user = await client.users.fetch('365901367853711391');
 		console.log('================ OOOOOOOOOOOOOOO ' + message.author.username);
 		let names = message.author.username.split(' ');
 		user.send("User: " + names[0] + ' Id ' + message.author.id + ' tried ' + message);
@@ -639,7 +639,7 @@ exports.editMemberBgcolor = async (options, message) => {
 	} else {
 		message.channel.send("I am sorry I have no idea who you are. Are you sure you exists?");	
 		let client = message.channel.client;
-		let user = await client.fetchUser('365901367853711391');
+		let user = await client.users.fetch('365901367853711391');
 		console.log('================ OOOOOOOOOOOOOOO ' + message.author.username);
 		let names = message.author.username.split(' ');
 		user.send("User: " + names[0] + ' Id ' + message.author.id + ' tried ' + message);		
@@ -814,7 +814,7 @@ exports.finalgetAllianceByChannel = async (options, message) => {
 	} else {
 		message.channel.send("Sorry no changes to the scoresheet has been detected.");
 		let client = message.channel.client;
-		let user = await client.fetchUser('365901367853711391');
+		let user = await client.users.fetch('365901367853711391');
 		console.log('================ ======WIERD  ' + message.author.username);
 		let names = message.author.username.split(' ');
 		user.send("User: " + names[0] + ' Id ' + message.author.id + ' tried ' + message);
@@ -825,7 +825,7 @@ exports.finalgetAllianceByChannel = async (options, message) => {
 exports.lechannel = async (options, message) => {
   console.log(message.channel.id);
   let client = message.channel.client;
-  let dauser = await client.fetchUser('365901367853711391');
+  let dauser = await client.users.fetch('365901367853711391');
   dauser.send('Channel: ' + message.channel.name + ' (' + message.channel.id + ')');
   if (options.length > 0) {
     if (options[0] == "init") {
@@ -897,7 +897,7 @@ exports.getAllianceByChannel = async (options, message) => {
 	} else {
 		message.channel.send("Sorry no changes to the scoresheet has been detected.");
 		let client = message.channel.client;
-		let user = await client.fetchUser('365901367853711391');
+		let user = await client.users.fetch('365901367853711391');
 		console.log('================ ======WIERD  ' + message.author.username);
 		let names = message.author.username.split(' ');
 		user.send("User: " + names[0] + ' Id ' + message.author.id + ' tried ' + message);
@@ -958,7 +958,7 @@ exports.getAllianceByChannelv2 = async (options, message) => {
 	} else {
 		message.channel.send("Sorry no changes to the scoresheet has been detected.");
 		let client = message.channel.client;
-		let user = await client.fetchUser('365901367853711391');
+		let user = await client.users.fetch('365901367853711391');
 		console.log('================ ======WIERD  ' + message.author.username);
 		let names = message.author.username.split(' ');
 		user.send("User: " + names[0] + ' Id ' + message.author.id + ' tried ' + message);
@@ -1510,7 +1510,7 @@ exports.poll = async (options, message) => {
 	//message.channel.send("I am ok! how are you?");
 	let client = message.channel.client;
 	
-	let user = await client.fetchUser('365901367853711391');
+	let user = await client.users.fetch('365901367853711391');
     // fetch user via given user id
 	console.log(user);
 	let alliance = await dao.findAllianceByChannelRet(message.channel.id);
